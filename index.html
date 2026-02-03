@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Undangan Ulang Tahun ke-60</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            overflow-x: hidden;
+        }
+
+        /* Cover */
+        .cover {
+            height: 100vh;
+            background-image: url("cover-melisa-60.jpg"); /* ganti foto */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            /* animasi */
+            opacity: 1;
+            transition: opacity 1s ease;
+        }
+
+        .cover.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .overlay {
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            padding: 40px;
+            text-align: center;
+            border-radius: 12px;
+        }
+
+        .btn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            background: #ffd700;
+            color: #000;
+        }
+
+        /* Content */
+        .content {
+            max-width: 700px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 40px 20px;
+            border-radius: 10px;
+            text-align: center;
+
+            /* animasi */
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease, transform 1s ease;
+            display: none;
+        }
+
+        .content.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover -->
+    <div class="cover" id="cover">
+        <div class="overlay">
+            <h2>Undangan Ulang Tahun</h2>
+            <h1>Melisa</h1>
+            <h2>60 Tahun</h2>
+            <button class="btn" onclick="bukaUndangan()">Buka Undangan</button>
+        </div>
+    </div>
+
+    <!-- Isi Undangan -->
+    <div class="content" id="undangan">
+        <p>Assalamu’alaikum Wr. Wb.</p>
+
+        <p>
+            Dengan penuh rasa syukur, kami mengundang
+            Bapak/Ibu/Saudara/i untuk menghadiri acara
+            ulang tahun ke-60:
+        </p>
+
+        <h3>Ibu Melisa</h3>
+
+        <p>
+            🗓️ <strong>Hari:</strong> Menjelang Kiamat<br>
+            ⏰ <strong>Waktu:</strong> Belum Ditentukan<br>
+            📍 <strong>Tempat:</strong> Di mana takdir mempertemukan
+        </p>
+
+        <p>
+            Kehadiran Anda adalah doa,
+            dan doa Anda adalah hadiah terbaik.
+        </p>
+
+        <p>Wassalamu’alaikum Wr. Wb.</p>
+    </div>
+
+    <div class="footer">
+        <p>Keluarga Besar Ibu Melisa</p>
+    </div>
+
+    <script>
+        function bukaUndangan() {
+            const cover = document.getElementById("cover");
+            const undangan = document.getElementById("undangan");
+
+            cover.classList.add("hide");
+
+            setTimeout(() => {
+                cover.style.display = "none";
+                undangan.style.display = "block";
+                setTimeout(() => {
+                    undangan.classList.add("show");
+                }, 50);
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>
