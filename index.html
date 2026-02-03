@@ -49,12 +49,20 @@ body{margin:0;font-family:Georgia,serif;background:#f2f2f2;color:#333}
 .close{background:#ccc}
 
 .footer{text-align:center;font-size:14px;color:#777;padding:20px}
+
+/* ANIMASI TEKS NGAREP */
+@keyframes ngarep {
+  0%   {opacity:0; transform:scale(0.9) rotate(0deg)}
+  40%  {opacity:1; transform:scale(1.05) rotate(-2deg)}
+  70%  {transform:scale(1) rotate(2deg)}
+  100% {transform:scale(1) rotate(0deg)}
+}
+.ngarep { animation: ngarep 0.9s ease; }
 </style>
 </head>
 
 <body>
 
-<!-- MUSIK -->
 <audio id="musik" loop>
   <source src="musik.mp3" type="audio/mpeg">
 </audio>
@@ -92,7 +100,7 @@ body{margin:0;font-family:Georgia,serif;background:#f2f2f2;color:#333}
     Rumah Mbah MONO & Nini ANI
   </div>
 
-  <!-- MAPS (LIHAT LOKASI SAJA) -->
+  <!-- MAPS -->
   <div style="margin-top:30px">
     <h3>📍 Lokasi Acara</h3>
     <button class="btn" style="background:#1a73e8;color:#fff" onclick="tampilMaps()">Lihat Lokasi</button>
@@ -116,23 +124,21 @@ body{margin:0;font-family:Georgia,serif;background:#f2f2f2;color:#333}
   <div class="popup-box">
     <h3>Pilih Hadiah</h3>
 
-    <!-- TRANSFER 2 TAHAP -->
+    <!-- TRANSFER E-WALLET (TANPA NOMOR + ANIMASI) -->
     <button class="transfer" onclick="tampilEwallet()">💳 Transfer via E-Wallet</button>
-    <div id="detailEwallet" style="display:none;margin-top:10px">
-      <p style="margin:8px 0;font-weight:bold">+62 813-2820-2083</p>
-      <button class="transfer" onclick="salinEwallet()">📋 Salin Nomor</button>
-      <p id="infoCopy" style="font-size:13px;color:green;display:none">Nomor tersalin ✔</p>
+    <div id="detailEwallet" style="display:none;margin-top:12px">
+      <p class="ngarep" style="font-weight:bold;color:#d32f2f">
+        NGAREP BANGET ANA SING TRANSFER HAHA DASAR MELI GOBLOK!!
+      </p>
     </div>
 
-    <!-- KADO -->
     <button class="kado"
-      onclick="window.open('https://wa.me/6281328202083?text=aku%20arep%20memberikan%20kado%20bunga%20mawar%20go%20koe,%20nek%20koe%20meninggoy%20wkwkwkckkk')">
+      onclick="window.open('https://wa.me/6281328202083?text=Saya%20ingin%20memberikan%20kado%20langsung%20untuk%20Melisa')">
       🎁 Kasih Kado Langsung
     </button>
 
-    <!-- DOA -->
     <button class="doa"
-      onclick="window.open('https://wa.me/6281328202083?text=Semoga%20Melisa%20cepat%20meninggoy%20biar%20beban%20bumi%20berkurang')">
+      onclick="window.open('https://wa.me/6281328202083?text=Semoga%20Melisa%20selalu%20diberi%20kesehatan%20dan%20kebahagiaan')">
       🤲 Cuma Kasih Doa
     </button>
 
@@ -141,12 +147,10 @@ body{margin:0;font-family:Georgia,serif;background:#f2f2f2;color:#333}
 </div>
 
 <script>
-const ewallet = "+6281328202083";
-
 function bukaUndangan(){
-  const musik = document.getElementById("musik");
-  const cover = document.getElementById("cover");
-  const undangan = document.getElementById("undangan");
+  const musik=document.getElementById("musik");
+  const cover=document.getElementById("cover");
+  const undangan=document.getElementById("undangan");
   musik.play();
   cover.classList.add("hide");
   setTimeout(()=>{
@@ -156,20 +160,19 @@ function bukaUndangan(){
   },1000);
 }
 
-function bukaKado(){ document.getElementById("popup").style.display="flex"; }
+function bukaKado(){document.getElementById("popup").style.display="flex";}
 function tutupKado(){
   document.getElementById("popup").style.display="none";
   document.getElementById("detailEwallet").style.display="none";
-  document.getElementById("infoCopy").style.display="none";
 }
 
 function tampilEwallet(){
-  document.getElementById("detailEwallet").style.display="block";
-}
-
-function salinEwallet(){
-  navigator.clipboard.writeText(ewallet);
-  document.getElementById("infoCopy").style.display="block";
+  const el=document.getElementById("detailEwallet");
+  el.style.display="block";
+  const teks=el.querySelector(".ngarep");
+  teks.classList.remove("ngarep");
+  void teks.offsetWidth; // reset animasi
+  teks.classList.add("ngarep");
 }
 
 function tampilMaps(){
